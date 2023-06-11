@@ -30,6 +30,8 @@ public interface ClientRepository {
 
     List<Club> getClubNotAuth(String id);
 
+    List<Client> getJoinClub(String clubName);
+
     List<Client> getWaitJoinClub(String clubName);
 
     Club getClubByName(String clubName);

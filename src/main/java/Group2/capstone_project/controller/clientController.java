@@ -620,9 +620,11 @@ public class clientController {
         Client client = (Client)session.getAttribute(SessionConst.LOGIN_CLIENT);
         Club club = clientserivce.getClubByClubName(name);
         Optional<MemberShip> memberShip = clientserivce.isJoinClub(name, client.getId());
+        List<Client> clients = clientserivce.getJoinClub(memberShip.get().getClubName());
         System.out.println(memberShip.get().getClubName());
         if(memberShip.isPresent()){
             if(memberShip.get().getJoinAuth().equals("OK")) {
+                model.addAttribute("member",clients.size());
                 model.addAttribute("client", client);
                 model.addAttribute("clubName", memberShip.get().getClubName());
                 return "loginClient/group_home.html";

@@ -78,6 +78,11 @@ public class MemoryClientRepository implements ClientRepository{
     }
 
     @Override
+    public List<Client> getJoinClub(String clubName) {
+        return null;
+    }
+
+    @Override
     public List<Client> getWaitJoinClub(String clubName) {
         return null;
     }

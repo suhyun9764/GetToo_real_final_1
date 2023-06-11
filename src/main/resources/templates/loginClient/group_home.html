@@ -33,10 +33,10 @@
     </header>
 
     <section id="s1">
-        <div class="back"><a href="login_group.html"><img src="/img/icon_back.png"></a></div>
+        <div class="back"><a href="loginGroup"><img src="/img/icon_back.png"></a></div>
         <div class="group_title">
             <div class="title_img"><img th:src="@{'/img/group/' + ${clubName} + '.jpg'}"style="height: 180px;"/></div>
-            <div class="title_name"><h2> <span th:text="${clubName}"></span></h2></div>
+            <div class="title_name"><h2> <span th:text="${clubName}"></span>(총 인원:<span th:text="${member}"></span>)</h2></div>
         </div>
         <div style="margin-top: 1px; width: 100%;">
             <ul>

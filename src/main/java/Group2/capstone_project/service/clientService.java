@@ -128,6 +128,13 @@ public class clientService {
         return waitClients;
     }
 
+    public List<Client> getJoinClub(String clubName){
+        List<Client> Clients = clientRepository.getJoinClub(clubName);
+        return Clients;
+    }
+
+
+
     public Club getClubByClubName(String clubName){
         Club club = clientRepository.getClubByName(clubName);
         return club;

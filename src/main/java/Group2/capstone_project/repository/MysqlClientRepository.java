@@ -147,6 +147,14 @@ public class MysqlClientRepository implements ClientRepository{
     }
 
     @Override
+    public List<Client> getJoinClub(String clubName) {
+        String sql ="SELECT c.* FROM membership m JOIN client c ON m.studentName = c.id WHERE m.clubName=? AND m.joinAuth=?";
+        String[] ob = {clubName,"OK"};
+        List<Client> waitClients = jdbcTemplate.query(sql,clientRowMapper(),ob);
+        return waitClients;
+    }
+
+    @Override
     public List<Client> getWaitJoinClub(String clubName) {
         String sql ="SELECT c.* FROM membership m JOIN client c ON m.studentName = c.id WHERE m.clubName=? AND m.joinAuth=?";
         String[] ob = {clubName,"NO"};
