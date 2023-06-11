@@ -163,4 +163,10 @@ public class clientService {
     public void cancelApply(String clubName,String clientId){
         clientRepository.cancelApply(clubName,clientId);
     }
+
+    public String getLeaderByClub(String clubName){
+        String result = clientRepository.getLeaderByClub(clubName);
+        return result;
+    }
+
 }

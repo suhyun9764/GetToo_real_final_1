@@ -131,6 +131,14 @@ public class MysqlClientRepository implements ClientRepository{
     }
 
     @Override
+    public String getLeaderByClub(String clubName) {
+        String sql = "SELECT * FROM club WHERE clubName =?";
+        List<Club> club = jdbcTemplate.query(sql,clubRowMapper(),clubName);
+        String result = club.stream().findAny().get().getLeader();
+        return result;
+    }
+
+    @Override
     public List<Club> getClubNotAuth(String id) {
         String sql = "SELECT c.* FROM membership m JOIN club c ON m.clubName = c.clubName WHERE m.studentName = ? AND m.joinAuth =?";
         String[] ob = {id,"NO"};

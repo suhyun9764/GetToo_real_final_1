@@ -196,6 +196,19 @@ public class clientController {
     public String outClub(@RequestParam("clubName")String clubName, HttpServletRequest request,Model model){
         HttpSession session = request.getSession(false);
         Client client =(Client) session.getAttribute(SessionConst.LOGIN_CLIENT);
+        System.out.println(clientserivce.getLeaderByClub(clubName));
+        if(clientserivce.getLeaderByClub(clubName).equals(client.getId())){
+            List<Club> clubs = clientserivce.getClubByClient(client.getId());
+            List<Club> leaderClubs = clientserivce.getClubLeaderByClient(client.getId());
+            List<Club> notJoinClubs = clientserivce.getClubNotAuth(client.getId());
+            model.addAttribute("clubs",clubs);
+            model.addAttribute("leaderClubs",leaderClubs);
+            model.addAttribute("notauthclub",notJoinClubs);
+            model.addAttribute("name",client.getName());
+            model.addAttribute("errorMessage","본인이 운영중인 동아리는 탈퇴할 수 없습니다");
+
+            return "loginClient/login_group.html";
+        }
         clientserivce.outClub(clubName,client.getId());
 
         List<Club> clubs = clientserivce.getClubByClient(client.getId());
@@ -205,7 +218,7 @@ public class clientController {
         model.addAttribute("leaderClubs",leaderClubs);
         model.addAttribute("notauthclub",notJoinClubs);
         model.addAttribute("name",client.getName());
-        model.addAttribute("errorMessage","동아리 탈퇴가완료되었습니다");
+        model.addAttribute("errorMessage","동아리 탈퇴가 완료되었습니다");
 
         return "loginClient/login_group.html";
     }
@@ -706,6 +719,26 @@ public class clientController {
         return "loginClient/motiveIntro.html";
     }
 
+    @GetMapping("loginClient/goAlbum")
+    public String goAlbum(Model model,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        Client client = (Client)session.getAttribute(SessionConst.LOGIN_CLIENT);
+        model.addAttribute("client",client);
+        return "loginClient/act_board.html";
+    }
+    @GetMapping("loginClient/goActBoard")
+    public String goActBoard(Model model,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        Client client = (Client)session.getAttribute(SessionConst.LOGIN_CLIENT);
+        model.addAttribute("client",client);
+        return "loginClient/free_board.html";
+    }
 
-
+    @GetMapping("loginClient/goNoticeBoard")
+    public String goNoticeBoard(Model model,HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        Client client = (Client)session.getAttribute(SessionConst.LOGIN_CLIENT);
+        model.addAttribute("client",client);
+        return "loginClient/notice_board.html";
+    }
 }

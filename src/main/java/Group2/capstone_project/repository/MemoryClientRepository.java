@@ -68,6 +68,11 @@ public class MemoryClientRepository implements ClientRepository{
     }
 
     @Override
+    public String getLeaderByClub(String clubName) {
+        return null;
+    }
+
+    @Override
     public List<Club> getClubNotAuth(String id) {
         return null;
     }

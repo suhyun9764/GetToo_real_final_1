@@ -26,6 +26,8 @@ public interface ClientRepository {
 
     List<Club> getClubLeaderByClient(String id);
 
+    String getLeaderByClub(String clubName);
+
     List<Club> getClubNotAuth(String id);
 
     List<Client> getWaitJoinClub(String clubName);
